@@ -8,6 +8,7 @@ module WechatMchPay
   autoload :Client
   autoload :Configuration
   autoload :ApiLoader
+  autoload :Api
 
   class << self
     def configuration

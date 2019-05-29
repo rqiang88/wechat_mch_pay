@@ -2,7 +2,7 @@ module WechatMchPay
   module Helper
     module Signature
       def hexdigest(data)
-        Digest::MD5.hexdigest data.upcase
+        Digest::MD5.hexdigest(data).upcase
       end
 
       def verify?(data, signature)

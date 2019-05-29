@@ -4,4 +4,5 @@ WechatMchPay.configuration do |config|
   config.app_key   = 'app_key'  # null: false
   config.send_name = '商户名称'  # null: false
   config.client_ip = 'client_ip'
+  config.notify_url = 'notify_url'
 end
