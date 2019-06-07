@@ -14,13 +14,19 @@ module WechatMchPay
     def sendminiprogramhb options
       url = '/mmpaymkttransfers/sendminiprogramhb'
       data = request_data(default_wechat_mch_params, options)
-      response = execute('post', url, data, true)
+      execute('post', url, data, true)
     end
 
     def unifiedorder options
       url = '/pay/unifiedorder'
       data = request_data(default_wechat_pay_params, options)
       response = execute('post', url, data)
+
+      if response[:status] == 'success'
+        data = response[:data]
+        response[:data] = genarate_wechat_mch_payment data
+      end
+      response
     end
 
     def orderquery options
@@ -28,8 +34,8 @@ module WechatMchPay
     end
 
     def verify options
-      signature =  options.delete('signature')
-      data = handle_response_data options
+      signature = options['sign']
+      data = sign_data options
       verify?(data, signature)
     end
 

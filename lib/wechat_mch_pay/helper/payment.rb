@@ -1,52 +1,13 @@
 module WechatMchPay
   module Helper
     module Payment
-      def default_wechat_mch_params
-        {
-          'nonce_str' => nonce_str,
-          'mch_billno' => mch_billno,
-          'mch_id' => configurate.mch_id,
-          'wxappid' => configurate.appid,
-          'total_num' => 1,
-          'client_ip' => configurate.client_ip,
-          'send_name' => configurate.send_name,
-          'notify_way' => 'JSAPI',
-          'scene_id' => 'PRODUCT_3'
-        }
-      end
-
-      def default_wechat_pay_params
-        {
-          'appid' => configurate.appid,
-          'mch_id' => configurate.mch_id,
-          'nonce_str' => nonce_str,
-          'notify_url' => configurate.notify_url,
-          'trade_type' => 'JSAPI',
-          'spbill_create_ip' => configurate.client_ip
-        }
-      end
-
-      def default_wechat_params
-        {
-          'appid' => configurate.appid,
-          'mch_id' => configurate.mch_id,
-          'nonce_str' => nonce_str,
-        }
-      end
-
-      private 
-
-      def timstamp
-        Time.now.to_i
-      end
-
-      def nonce_str
-        SecureRandom.hex 14
-      end
-
-      def mch_billno
-        number = 1000 + rand(8999)
-        configurate.mch_id.to_s + Time.now.strftime("%Y%m%d%H%M%D") + number.to_s
+      def genarate_wechat_mch_payment data
+        options = default_wechat_mch_payment_params.clone
+        options['package'] = 'prepay_id=' + data['prepay_id']
+        options['paySign'] = hexdigest(sign_data options)
+        options.delete('appId')
+        data['payment'] = options
+        data
       end
     end
   end 

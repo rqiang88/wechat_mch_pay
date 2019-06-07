@@ -13,6 +13,7 @@ module WechatMchPay
       options = {}
       options = ssl_options if ssl
       url = request_url url
+      
       response = RestClient::Resource.new(url, options).send(method, params)
       raw_data response
     end
