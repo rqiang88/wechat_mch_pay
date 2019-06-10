@@ -39,6 +39,18 @@ module WechatMchPay
       verify?(data, signature)
     end
 
+    def refund options
+      url = '/secapi/pay/refund'
+      data = request_data(default_wechat_mch_refund_params, options)
+      execute('post', url, data, true)
+    end
+
+    def refundquery options
+      url = '/pay/refundquery'
+      data = request_data(default_wechat_params, options)
+      execute('post', url, data)
+    end
+
     private
 
     def request_data default_params, options

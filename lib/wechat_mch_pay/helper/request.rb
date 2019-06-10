@@ -43,6 +43,15 @@ module WechatMchPay
         }
       end
 
+      def default_wechat_mch_refund_params
+        {
+          'appid' => configurate.appid,
+          'mch_id' => configurate.mch_id,
+          'nonce_str' => nonce_str,
+          'notify_url' => configurate.notify_url
+        }
+      end
+
       private 
 
       def timestamp
