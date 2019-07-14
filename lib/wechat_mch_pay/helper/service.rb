@@ -10,7 +10,7 @@ module WechatMchPay
       end
 
       def raw_data response 
-        return {status: :fail, msg: '请求错误,请稍后重试'} unless response.code.to_i == 200
+        return {status: 'fail', msg: '请求错误,请稍后重试'} unless response.code.to_i == 200
         response = Hash.from_xml response
         data = response['xml'] 
         if data['return_code'] == 'SUCCESS' && data['result_code'] == 'SUCCESS'

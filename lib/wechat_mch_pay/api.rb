@@ -10,7 +10,6 @@ module WechatMchPay
     include Helper::Payment
     include Helper::Request
 
-
     def sendminiprogramhb options
       url = '/mmpaymkttransfers/sendminiprogramhb'
       data = request_data(default_wechat_mch_params, options)
@@ -29,8 +28,16 @@ module WechatMchPay
       response
     end
 
-    def orderquery options
+    def transfers options
+      url = '/mmpaymkttransfers/promotion/transfers'
+      data = request_data(default_transfer_params, options)
+      execute('post', url, data, true)
+    end
 
+    def orderquery options
+      url = '/pay/orderquery'
+      data = request_data(default_wechat_params, options)
+      execute('post', url, data)
     end
 
     def verify options

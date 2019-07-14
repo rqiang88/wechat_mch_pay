@@ -52,6 +52,16 @@ module WechatMchPay
         }
       end
 
+      def default_transfer_params
+        {
+          'mch_appid' => configurate.appid,
+          'mchid' => configurate.mch_id,
+          'nonce_str' => nonce_str,
+          'check_name' => 'NO_CHECK',
+          'spbill_create_ip' => configurate.client_ip
+        }
+      end
+
       private 
 
       def timestamp
