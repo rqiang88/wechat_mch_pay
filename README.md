@@ -1,30 +1,27 @@
-# Eloan
+# WecahtMchPay
 
-小贷通支付
+微信小程序支付和红包
 
 ## 安装
 
 将以下代码添加到 Gemfile:
 
 ```ruby
-gem 'eloan'
+gem 'wechat_mch_pay', github: 'rqiang88/wechat_mch_pay'
 ```
 
 然后执行:
 
     $ bundle
 
-或者通过以下方式安装:
-
-    $ gem install eloan
-
 ## 使用
 
 通过以下方式添加配置项
 
 ```ruby
-rails g eloan:config
+rails g wechat_mch_pay:config
 ```
 ## wiki
 
-请见examples/example
+请参照微信官方文档对应相应接口
+接口调用方式 WechatMchPay.api.orderquery(options)
