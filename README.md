@@ -1,4 +1,4 @@
-# WecahtMchPay
+# WechatMchPay
 
 微信小程序支付和红包
 
