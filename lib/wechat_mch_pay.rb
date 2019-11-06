@@ -3,7 +3,7 @@ require "active_support"
 require "rest-client"
 
 module WechatMchPay
-	extend ActiveSupport::Autoload
+  extend ActiveSupport::Autoload
 
   autoload :Client
   autoload :Configuration
